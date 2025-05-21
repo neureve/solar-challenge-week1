@@ -13,6 +13,15 @@ def load_data():
     df_togo = pd.read_csv("data/togo_clean.csv")
     df_togo['Country'] = 'Togo'
     df = pd.concat([df_benin, df_sierraleone, df_togo], ignore_index=True)
+
+    # ✅ Add Region column inside load_data
+    country_region_map = {
+        'Benin': 'Africa',
+        'Sierra Leone': 'Africa',
+        'Togo': 'Africa'
+    }
+    df['Region'] = df['Country'].map(country_region_map)
+
     return df
 
 df = load_data()
@@ -33,12 +42,14 @@ sns.boxplot(data=df_filtered, x='Country', y='GHI', ax=ax)
 st.pyplot(fig)
 
 # --- Table: Top Regions by average GHI ---
-# Assuming you have a 'Region' column (replace or drop if not present)
 if 'Region' in df_filtered.columns:
     st.subheader("Top Regions by Average GHI")
-    top_regions = df_filtered.groupby('Region')['GHI'].mean().sort_values(ascending=False).head(10)
+    top_regions = (
+        df_filtered.groupby('Region')['GHI']
+        .mean()
+        .sort_values(ascending=False)
+        .reset_index()
+    )
     st.table(top_regions)
 else:
     st.info("No 'Region' column found in data.")
-
-
