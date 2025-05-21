@@ -1,20 +1,13 @@
-## Setup & Installation
+# Solar Data Dashboard
 
-Follow these steps to set up the development environment:
+## Setup
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/neurve/solar-challenge-week1.git
-cd solar-challenge-week1
+1. Clone repo
+2. Create and activate virtual environment
+3. Install dependencies with `pip install -r requirements.txt`
+4. Run the app with `streamlit run app/main.py`
 
-# 2. Create a virtual environment
-python -m venv .venv
+## Usage
 
-# 3. Activate the virtual environment (Windows)
-.\.venv\Scripts\activate
-
-# On macOS/Linux, use this instead:
-# source .venv/bin/activate
-
-# 4. Install the dependencies
-pip install -r requirements.txt
+- Use the country selector widget to filter data.
+- View GHI boxplots and top regions by mean GHI.
